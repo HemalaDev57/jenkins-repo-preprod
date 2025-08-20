@@ -1,37 +1,19 @@
+// Jenkinsfile
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
-            stages {
-                stage('Compile') {
-                    steps {
-                        echo 'Compiling...'
-                        sleep 10
-                    }
-                }
-                stage('Package') {
-                    steps {
-                        echo 'Packaging...'
-                        sleep 5
-                    }
-                }
+        stage('Build Artifacts') {
+            steps {
+                // Create three files as artifacts
+                sh 'echo "artifact 1" > artifact1.txt'
+                sh 'echo "artifact 2" > artifact2.txt'
+                sh 'echo "artifact 3" > artifact3.txt'
             }
         }
-
-        stage('Test') {
+        stage('Archive Artifacts') {
             steps {
-                echo 'Running Unit Tests...'
-                sleep 10
-                echo 'Running Integration Tests...'
-                sleep 5
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-                sleep 5
+                // Archive all three artifacts
+                archiveArtifacts artifacts: 'artifact*.txt', allowEmptyArchive: false
             }
         }
     }
