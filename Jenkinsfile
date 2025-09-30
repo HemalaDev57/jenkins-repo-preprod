@@ -23,6 +23,7 @@ pipeline {
             steps {
                 echo 'Registering the metadata'
                 echo 'Another echo to make the pipeline a bit more complex'
+                sleep 10
                 registerBuildArtifactMetadata(
                     name: "test-artifact",
                     version: "1.0.0",
