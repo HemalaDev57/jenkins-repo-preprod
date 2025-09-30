@@ -31,6 +31,7 @@ pipeline {
                     digest: "6f637064707039346163663237383938",
                     label: "prod"
                 )
+                sleep 5
             }
         }
 
